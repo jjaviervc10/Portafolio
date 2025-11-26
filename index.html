@@ -1,132 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portafolio - Javier Velazquez</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-  </head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
 
-  <body>
+<body>
 
-   
-<div class="hero">
 
-  <!-- Selector de idioma -->
-  <select id="language-switcher">
+    <div class="hero">
+
+        <!-- Selector de idioma -->
+        <select id="language-switcher">
     <option value="es" selected>Spanish</option>
     <option value="en">English</option>
   </select>
 
-  <!-- Elementos traducibles -->
-  <h1 data-i18n="title"></h1>
-  <p data-i18n="description"></p>
+        <!-- Elementos traducibles -->
+        <h1 data-i18n="title"></h1>
+        <p data-i18n="description"></p>
 
-    <div class="icono-wrapper">
-        <div class="icono">
-        <i class="material-icons">folder-code</i>
+        <div class="icono-wrapper">
+            <div class="icono">
+                <i class="material-icons">folder-code</i>
+            </div>
+            <div class="linea-vertical"></div>
         </div>
-        <div class="linea-vertical"></div>
-    </div>
 
-  <section class="header">
-    <div class="container">
-      <div class="linea-horizontal"></div>
+        <section class="header">
+            <div class="container">
+                <div class="linea-horizontal"></div>
 
-      <h1>Jesus Javier Velazquez Carrillo</h1>
-      <br />
-      <div style="text-align: center">
-        <p data-i18n="field">Desarrollador Full Stack</p>
-      </div>
+                <h1>Jesus Javier Velazquez Carrillo</h1>
+                <br />
+                <div style="text-align: center">
+                    <p data-i18n="field">Desarrollador Full Stack</p>
+                </div>
 
-      <!--<div class="contact-info">
+                <!--<div class="contact-info">
         <a class="contact-info" href="mailto:v.cjavier.velazquez@gmail.com">v.cjavier.velazquez@gmail.com</a>
         <br />
         <a class="contact-info" href="https://linkedin.com/in/javier" target="_blank">LinkedIn</a>
       </div>-->
 
-      <div class="linea-horizontal"></div>
-    </div>
-  </section>
+                <div class="linea-horizontal"></div>
+            </div>
+        </section>
 
-   <!-- NAVIGATION BUTTONS SECTION -->
-    <section class="nav-buttons">
-  <button class="nav-item" data-dialog="dialog-intro">Intro</button>
-  <button class="nav-item" data-i18n="projects" data-dialog="dialog-work">Work</button>
-  <button class="nav-item"  data-i18n="about" data-dialog="dialog-about">About</button>
-  <button class="nav-item"  data-i18n="contact" data-dialog="dialog-contact">Contact</button>
+        <!-- NAVIGATION BUTTONS SECTION -->
+        <section class="nav-buttons">
+            <button class="nav-item" data-dialog="dialog-intro">Intro</button>
+            <button class="nav-item" data-i18n="projects" data-dialog="dialog-work">Work</button>
+            <button class="nav-item" data-i18n="about" data-dialog="dialog-about">About</button>
+            <button class="nav-item" data-i18n="contact" data-dialog="dialog-contact">Contact</button>
 
 
     </div>
     </section>
 
-</div>
+    </div>
 
-   
+
     <!-- FOOTER -->
     <footer class="footer">
-      <div class="container">
-        <p data-i18n="footer">
-          &copy; 2025 Jesus Javier Velazquez Carrillo. Todos los derechos
-          reservados.
-        </p>
-      </div>
+        <div class="container">
+            <p data-i18n="footer">
+                &copy; 2025 Jesus Javier Velazquez Carrillo. Todos los derechos reservados.
+            </p>
+        </div>
     </footer>
 
-     <script src="js/i18n.js"></script>
-     <script src="js/actionsButtons.js" defer></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/actionsButtons.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('more-projects');
+            if (!select) return;
+
+            select.addEventListener('change', (event) => {
+                const url = event.target.value;
+                if (!url) return;
+
+                // abrir en nueva pestaña de forma segura
+                window.open(url, '_blank', 'noopener,noreferrer');
+
+                // cerrar dialog si el select está dentro de uno (opcional)
+                const dialog = select.closest('dialog');
+                if (dialog && typeof dialog.close === 'function') dialog.close();
+
+                // resetear el select al texto "Selecciona uno"
+                select.selectedIndex = 0;
+            });
+        });
+    </script>
 
 
-<dialog  id="dialog-intro">
-  <p data-i18n="intro">Bienvenido a la introducción</p>
+
+    <dialog id="dialog-intro">
+        <p data-i18n="intro">Bienvenido a la introducción</p>
 
 
-  <button class="btnDialogs close">Cerrar</button>
+        <button class="btnDialogs close">Cerrar</button>
+    </dialog>
+
+    <dialog id="dialog-work">
+        <h2 data-i18n="work"></h2>
+        <ul class="project-list">
+            <li> <a href="https://catalogoconangularspringbootbyjavier.netlify.app" target="_blank" data-i18n="project_angular">Catálogo Angular + Spring Boot</a></li>
+            <li><a href="https://festivalmusicjaviervelazquez.netlify.app" target="_blank" data-i18n="project_festival">Festival de Música</a></li>
+            <li><a href="https://blog-cafeby-javier-velazquez-181359.netlify.app" target="_blank" data-i18n="project_cafe">Blog de Café</a></li>
+            <li><a href="https://store-by-javier-velazquez.netlify.app" target="_blank" data-i18n="project_store">Tienda Online</a></li>
+            <li><a href="https://codigo-javiervelazquez.netlify.app" target="_blank" data-i18n="project_freelance">Código Personal</a></li>
+
+            <div class="dropdown-container">
+                <label for="more-projects" class="dropdown-label" data-i18n="react_projects">React-Proyectos:</label>
+                <select id="more-projects">
+                    <option value="" selected disabled data-i18n="selected">Selecciona uno</option>
+                    <option value="https://gestiongastosbyjaviervelazquez.netlify.app/" data-i18n="project_gestionGastos"></option>
+                    <option value="https://caloriestrackerbyjaviervelazquez.netlify.app/" data-i18n="project_Calories"></option>
+                    <option value="https://tipcalculatorbyjaviervelazquez.netlify.app/" data-i18n="project_Propinas"></option>
+                </select>
+            </div>
+
+        </ul>
+        <button class="btnDialogs close">Cerrar</button>
+    </dialog>
+
+
+    <dialog id="dialog-about">
+
+        <br>
+        <p data-i18n="about_1"></p>
+        <p data-i18n="about_2"></p>
+        <p data-i18n="about_3"></p>
+        <p data-i18n="about_4"></p>
+        <p data-i18n="about_5"></p>
+        <button class="btnDialogs close">Cerrar</button>
+    </dialog>
+
+    <dialog id="dialog-contact">
+        <ul class="project-list">
+            <li>
+                <i class="material-icons">contact_mail</i>
+                <a target="_blank">v.cjavier.velazquez@gmail.com</a>
+            </li>
+            <li>
+                <i class="material-icons">phone</i>
+                <a target="_blank">+52 614-327-83-57</a>
+            </li>
+        </ul>
+        <button class="btnDialogs close">Cerrar</button>
+    </dialog>
+
+
+
+</body>
+
+</html>
+</ul>
+<button class="btnDialogs close">Cerrar</button>
 </dialog>
-  
-<dialog id="dialog-work">
-  <h2 data-i18n="work"></h2>
-  <ul class="project-list">
-    <li> <a href="https://catalogoconangularspringbootbyjavier.netlify.app" target="_blank" data-i18n="project_angular">Catálogo Angular + Spring Boot</a></li>
-    <li><a href="https://festivalmusicjaviervelazquez.netlify.app" target="_blank" data-i18n="project_festival">Festival de Música</a></li>
-    <li><a href="https://blog-cafeby-javier-velazquez-181359.netlify.app" target="_blank" data-i18n="project_cafe">Blog de Café</a></li>
-    <li><a href="https://store-by-javier-velazquez.netlify.app" target="_blank" data-i18n="project_store">Tienda Online</a></li>
-    <li><a href="https://codigo-javiervelazquez.netlify.app" target="_blank" data-i18n="project_freelance">Código Personal</a></li>
-  </ul>
-  <button class="btnDialogs close">Cerrar</button>
-</dialog>
-
-
-<dialog id="dialog-about">
-  
-  <br>
-  <p data-i18n="about_1"></p>
-  <p data-i18n="about_2"></p>
-  <p data-i18n="about_3"></p>
-  <p data-i18n="about_4"></p>
-  <p data-i18n="about_5"></p>
-  <button class="btnDialogs close">Cerrar</button>
-</dialog>
-
-<dialog id="dialog-contact">
-  <ul class="project-list">
-    <li>
-      <i class="material-icons">contact_mail</i>
-      <a target="_blank" >v.cjavier.velazquez@gmail.com</a>
-    </li>
-    <li>
-      <i class="material-icons">phone</i>
-      <a target="_blank">+52 614-327-83-57</a>
-    </li>
-  </ul>
-  <button class="btnDialogs close">Cerrar</button>
-</dialog>
 
 
 
-  </body>
+</body>
+
 </html>
